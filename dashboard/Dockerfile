@@ -6,7 +6,7 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
+# Install ALL dependencies (including devDependencies)
 RUN npm install
 
 # Copy source code
@@ -20,12 +20,12 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy built assets from build stage
+# Copy built assets and package files
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/package*.json ./
 
-# Install only production dependencies
-RUN npm install --production
+# Install ALL dependencies (including devDependencies) for preview server
+RUN npm install
 
 # Expose port
 EXPOSE 5678
