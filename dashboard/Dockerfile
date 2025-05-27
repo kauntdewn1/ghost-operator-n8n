@@ -30,5 +30,9 @@ RUN npm install --production
 # Expose port
 EXPOSE 5678
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:5678/healthz || exit 1
+
 # Start the app
 CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "5678"] 

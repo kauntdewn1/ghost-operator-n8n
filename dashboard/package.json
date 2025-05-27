@@ -1,6 +1,7 @@
 {
   "name": "ghost-operator-dashboard",
   "version": "1.0.0",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
